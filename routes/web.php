@@ -18,4 +18,5 @@ Route::get('/register', 'admin@register');
 Route::get('/loginpage', 'admin@loginpage');
 Route::get('/registerpage', 'admin@registerpage');
 Route::get('/panel', 'admin@adminpanel');
+Route::get('/','admin@adminpanel');
 Route::post('/register', 'admin@register');
