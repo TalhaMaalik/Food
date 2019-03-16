@@ -112,7 +112,7 @@ class RestaurantController extends Controller
 
                 if(isset(Input::file('item')[$index]['image'])) {
                     $file = Input::file('item')[$index]['image'];
-                    $filename = $rest_obj->id . '-' . $menu_obj->id . '.' . $file->getClientOriginalExtension();
+                    $filename = $menu_obj->id . '.' . $file->getClientOriginalExtension();
                     $file->move(public_path() . '/images/data/', $filename);
 
                 }
