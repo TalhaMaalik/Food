@@ -20,6 +20,9 @@ class RestaurantController extends Controller
     }
 
     function Register(Request $request) {
+
+
+
         $owner_name = Input::get('owner_name');
         $email = Input::get('email');
         $owner_phone = Input::get('owner_phone');
@@ -28,8 +31,11 @@ class RestaurantController extends Controller
         $rest_phone = Input::get('rest_phone');
         $lat = Input::get('lat');
         $long = Input::get('long');
-        $d_charges = Input::get('d_charges');
-        $d_time = Input::get('d_time');
+        $d_charges = Input::get('deliverycharges');
+        $d_time = Input::get('deliverytime');
+
+
+
 
         $errors=[];
         $validator = Validator::make($request->all(),[
@@ -41,8 +47,10 @@ class RestaurantController extends Controller
             'rest_phone' => 'required',
             'lat' => 'required',
             'long' => 'required',
-            'd_charges' => 'required|numeric',
-            'd_time' => 'required|numeric',
+            'deliverycharges' => 'required|numeric',
+            'deliverytime' => 'required|numeric',
+
+
         ]);
 
         if ($validator->fails()) {
@@ -54,6 +62,21 @@ class RestaurantController extends Controller
             }
         }
 
+        foreach(Input::get('item') as $item){
+
+            if(!isset($item['name'])){
+
+                $errors[] = ("Item names are empty");
+
+            }
+            if(!isset($item['price'])){
+
+                $errors[] = ("Item prices are empty");
+
+            }
+
+        }
+
         if ($errors) {
             $add_ons['errors'] = $errors;
 
@@ -62,12 +85,13 @@ class RestaurantController extends Controller
             $rest_obj = new restaurantmodel();
 
 
-            $owner_obj->id = mt_rand(1000, 9999);
             $owner_obj->name = $owner_name;
             $owner_obj->email = $email;
             $owner_obj->phone = $owner_phone;
 
-            $rest_obj->id = mt_rand(1000,9999);
+            $owner_obj->Save();
+
+            $rest_obj->ownerID=$owner_obj->id;
             $rest_obj->name = $restaurant_name;
             $rest_obj->address = $address;
             $rest_obj->phone = $rest_phone;
@@ -76,30 +100,33 @@ class RestaurantController extends Controller
             $rest_obj->deliverycharges = $d_charges;
             $rest_obj->deliverytime = $d_time;
 
-            foreach(Input::get('item') as $i) {
+            $rest_obj->Save();
+
+            foreach(Input::get('item') as $index=> $i) {
                 $menu_obj = new menumodel();
-                $menu_obj->id = mt_rand(1000,9999);
+                $menu_obj->restaurantID=$rest_obj->id;
                 $menu_obj->name = $i['name'];
                 $menu_obj->price = $i['price'];
 
+                $menu_obj->save();
+
+                if(isset(Input::file('item')[$index]['image'])) {
+                    $file = Input::file('item')[$index]['image'];
+                    $filename = $rest_obj->id . '-' . $menu_obj->id . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/images/data/', $filename);
+
+                }
+
             }
 
-            foreach(Input::get('item') as $i) {
-                $filename = time().'.'.request()->$i['image']->getClientOriginalExtension();
-                request()->$i['image']->move(public_path('C:\Users\Minhaj Siddiqui\Downloads'), $filename);
-
-                $user->image=$filename;
-                $user->save();
+            foreach(Input::get('item') as $index => $i) {
 
             }
 
-            $owner_obj->save();
-            $rest_obj->save();
-            $menu_obj->save();
+
             $add_ons['success'] = "Successfully Added";
         }
 
         return view('RestaurantViews.registration')->with('add_ons',$add_ons);
-        //  return $add_ons;
     }
 }

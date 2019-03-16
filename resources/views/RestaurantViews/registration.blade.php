@@ -63,7 +63,7 @@
                                 </ul>
                             </div>
 
-                            <form action="/register" method="post" >
+                            <form action="/register" method="post" enctype="multipart/form-data">
                                 <div class="tab-content">
                                     <div class="tab-pane active" role="tabpanel" id="step1">
                                         <div class="row">
@@ -85,7 +85,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Email</label>
-                                                                            <input id="example-email" class="form-control" type="email" placeholder="Email" name="email" >
+                                                                            <input id="example-email" class="form-control" type="text" placeholder="Email" name="email" >
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Phone</label>
@@ -187,7 +187,7 @@
                                                                             </div>
                                                                             <div class="col-sm-3">
                                                                                 <label>Picture:</label>
-                                                                                <input type="file" accept="image/*" class="form-control" name="item[0][image]" />
+                                                                                <input type="file" accept="image/img,png" class="form-control" name="item[0][image]" />
                                                                             </div>
                                                                             <div class="col-sm-1">
                                                                                 <label> Add Item:</label>
@@ -228,11 +228,11 @@
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label>Delivery Charges</label>
-                                                                    <input type="number" class="form-control" PLACEHOLDER="$" name="d_charges">
+                                                                    <input type="number" class="form-control" PLACEHOLDER="$" name="deliverycharges">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Delivery Time</label>
-                                                                    <input class="form-control" type="Number" placeholder="Time in minutes" name="d_time">
+                                                                    <input class="form-control" type="Number" placeholder="Time in minutes" name="deliverytime">
                                                                 </div>
 
                                                                 <button type="submit" class="btn btn-primary  pull-right ">Submit</button>
