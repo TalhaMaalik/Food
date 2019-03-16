@@ -13,10 +13,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/login', 'admin@login');
-Route::get('/register', 'admin@register');
-Route::get('/loginpage', 'admin@loginpage');
-Route::get('/registerpage', 'admin@registerpage');
-Route::get('/panel', 'admin@adminpanel');
-Route::get('/','admin@adminpanel');
-Route::post('/register', 'admin@register');
+Route::get('/login', 'adminController@LoginView');
+Route::post('/login', 'adminController@login');
+Route::post('/register', 'RestaurantController@Register')->middleware('AdminControl');
+Route::get('/register', 'RestaurantController@RegisterView')->middleware('AdminControl');
+Route::get('/','adminController@IndexView')->middleware('AdminControl');

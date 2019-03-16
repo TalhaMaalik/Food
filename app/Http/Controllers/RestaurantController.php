@@ -1,59 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\adminmodel;
+
+use Illuminate\Http\Request;
 use App\itemmodel;
 use App\menumodel;
 use App\ownermodel;
 use App\restaurantmodel;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class admin extends Controller
+class RestaurantController extends Controller
 {
 
-    function registerpage() {
-        return view('registration');
+    function RegisterView(){
+
+        return view('RestaurantViews.registration');
+
     }
 
-    function loginpage() {
-        return view('page-login');
-    }
-
-    function adminpanel() {
-        return view('index');
-    }
-
-    function login()
-    {
-
-        $admin_id = Input::get('id');
-        $password = Input::get('password');
-
-        try {
-
-            $search = adminmodel::where('id', '=', $admin_id)->firstOrFail();
-
-            if ($password == $search->pass) {
-
-                setcookie('admin_token',1234,time()*20*20,'/');
-                return redirect('/panel');
-
-
-            } else {
-                $add_ons = ['message' => 'Invalid ID or Password'];
-
-                return view('page-login')->with('add_ons',$add_ons);
-            }
-
-        }  catch (\Exception $e) {
-            $add_ons = ['message' => 'Invalid ID or Password'];
-            return view('page-login')->with('add_ons', $add_ons);
-        }
-    }
-
-    function register(Request $request) {
+    function Register(Request $request) {
         $owner_name = Input::get('owner_name');
         $email = Input::get('email');
         $owner_phone = Input::get('owner_phone');
@@ -125,7 +91,7 @@ class admin extends Controller
                 $user->image=$filename;
                 $user->save();
 
-            } 
+            }
 
             $owner_obj->save();
             $rest_obj->save();
@@ -133,7 +99,7 @@ class admin extends Controller
             $add_ons['success'] = "Successfully Added";
         }
 
-        return view('registration')->with('add_ons',$add_ons);
-      //  return $add_ons;
+        return view('RestaurantViews.registration')->with('add_ons',$add_ons);
+        //  return $add_ons;
     }
 }

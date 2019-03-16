@@ -40,19 +40,17 @@
 						</div>
 
 						<div class="login-form">
-							<h4>Administratior Login</h4>
-                            @if (isset($add_ons))
+							<h4>Administrator Login</h4>
+                            @if (isset($error))
                             <div class="alert alert-danger">
-                                <strong>{{$add_ons['message']}}</strong> .
+                                <strong>{{$error}}</strong> .
                             </div>
                             @endif
 							<form action="/login" method="post">
 								<div class="form-group">
-									<label>ID</label>
 									<input type="text" class="form-control" placeholder="ID" name="id">
 								</div>
 								<div class="form-group">
-									<label>Password</label>
 									<input type="password" class="form-control" placeholder="Password" name="password">
 								</div>
 
