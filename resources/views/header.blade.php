@@ -41,22 +41,13 @@
         <div class="nano-content">
             <ul>
                 <li class="label">Main</li>
-                <li class="active"><a href=""><i class="ti-home"></i> Dashboard </a></li>
-                <li class="label">Features</li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-layout"></i> UI Elements <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                    <ul>
-                        <li><a href="ui-accordion.html">Accordion</a></li>
-                        <li><a href="ui-alerts.html">Alerts</a></li>
-                        <li><a href="ui-badges.html">Badges</a></li>
-                    </ul>
-                </li>
-
-
+                <li class="active"><a href="/"><i class="ti-home"></i> Dashboard </a></li>
 
                 <li class="label">Form</li>
-                <li><a href="form-basic.html"><i class="ti-view-list-alt"></i> Basic Form </a></li>
+                <li><a href="/register"><i class="ti-save-alt"></i> Register Restaurant </a></li>
+                <li><a href="/modify"><i class="ti-pencil-alt"></i> Modify Restaurant </a></li>
 
-                <li class="label">Miscellaneous</li>
+
 
 
             </ul>

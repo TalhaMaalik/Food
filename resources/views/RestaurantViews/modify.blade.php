@@ -31,7 +31,7 @@
                                     <div class="col-md-2">
                                         <h4 class="card-title">Restaurants List</h4></div>
 
-                                    <div class="form-search float-left">
+                                    <div class="form-search pull-right">
                                         <form action="/modify/search" class="d-none d-sm-block" method="post">
                                             <div class="input-group search-box">
                                                 <div class="input-group-prepend">
