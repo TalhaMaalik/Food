@@ -87,7 +87,7 @@
 
                     <div class="dropdown-content-body">
                         <ul>
-                            <li><a href="/loginpage"><i class="ti-power-off"></i> <span>Logout</span></a></li>
+                            <li><a href="/login"><i class="ti-power-off"></i> <span>Logout</span></a></li>
                         </ul>
                     </div>
                 </div>
